@@ -1,0 +1,18 @@
+<%= page_header "Reset your password" %>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <p><%= t '.description' %></p>
+
+    <%= form_for :password, :url => passwords_path do |form| %>
+      <div class='form-group'>
+        <%= form.label :email %>
+        <%= form.text_field :email, :type => 'email', class: 'form-control', placeholder: 'email address' %>
+      </div>
+
+      <div class='form-group'>
+        <%= form.submit "Reset password", class: 'btn btn-lg btn-primary btn-block' %>
+      </div>
+      <p><%= link_to t('.sign_in'), sign_in_path %></p>
+    <% end %>
+  </div>
+</div>
