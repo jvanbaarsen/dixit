@@ -2,7 +2,6 @@ require 'spec_helper'
 
 feature 'Visitor signs in' do
   scenario 'with valid email and password' do
-    pending "Its pending"
     create_user 'user@example.com', 'password'
     sign_in_with 'user@example.com', 'password'
 
@@ -10,7 +9,6 @@ feature 'Visitor signs in' do
   end
 
   scenario 'with valid mixed-case email and password ' do
-    pending "Its pending"
     create_user 'user.name@example.com', 'password'
     sign_in_with 'User.Name@example.com', 'password'
 
@@ -18,7 +16,6 @@ feature 'Visitor signs in' do
   end
 
   scenario 'tries with invalid password' do
-    pending "Its pending"
     create_user 'user@example.com', 'password'
     sign_in_with 'user@example.com', 'wrong_password'
 
@@ -27,7 +24,6 @@ feature 'Visitor signs in' do
   end
 
   scenario 'tries with invalid email' do
-    pending "Its pending"
     sign_in_with 'unknown.email@example.com', 'password'
 
     page_should_display_sign_in_error

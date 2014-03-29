@@ -7,10 +7,17 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<% if signed_in?  %>
-  <%= link_to "Sign out", sign_out_path %>
-<% end %>
-<%= yield %>
+  <% if flash[:error] -%>
+    <p class='error'><%=h flash[:error] %></p>
+  <% end -%>
+  <% if flash[:notice] -%>
+    <p class='notice'><%=h flash[:notice] %></p>
+  <% end -%>
 
+  <% if signed_in?  %>
+    <%= link_to "Sign out", sign_out_path %>
+  <% end %>
+
+  <%= yield %>
 </body>
 </html>
