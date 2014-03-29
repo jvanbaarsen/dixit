@@ -9,6 +9,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'unicorn'
+gem 'clearance', '~> 1.3.0'
 
 group :development do
   gem 'spring'
