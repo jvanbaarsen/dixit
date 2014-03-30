@@ -1,4 +1,11 @@
 Dixit::Application.routes.draw do
+  resources :users,
+    controller: 'users',
+    only: Clearance.configuration.user_actions do
+      resource :password,
+        controller: 'clearance/passwords',
+        only: [:create, :edit, :update]
+    end
 
   get '/session', to: redirect('/sign_in')
 
