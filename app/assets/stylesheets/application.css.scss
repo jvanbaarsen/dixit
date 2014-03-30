@@ -10,9 +10,10 @@
  *
  *= require_self
  *= require font-awesome
- *= require_tree .
  */
+@import "variables";
 @import "bootstrap";
+@import "bootswatch";
 
 .user-button {
   @extend .btn-group;
@@ -21,13 +22,18 @@
 }
 
 .story {
+  .thumbnail {
+    @extend .img-circle;
+    @extend .img-thumbnail;
+  }
   .status-bar {
     @extend .row;
-    @extend .bg-info;
+    @extend .bg-warning;
     margin-top: 20px;
     padding: 10px;
     span {
       line-height: 33px;
+      color: #fff;
     }
   }
 }
