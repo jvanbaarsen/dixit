@@ -4,6 +4,11 @@
     <p><%= t '.description' %></p>
     <%= form_for :password_reset, :url => user_password_path(@user, :token => @user.confirmation_token),
           :html => { :method => :put } do |form| %>
+    <% if flash[:notice] -%>
+      <div class="alert alert-danger">
+        <p><%=h flash[:notice] %></p>
+      </div>
+  <% end -%>
       <div class='form-group'>
         <%= form.label :password %>
         <%= form.password_field :password, class: 'form-control', placeholder: 'Password' %>
@@ -12,6 +17,7 @@
       <div class='form-group'>
         <%= form.submit "Save this password", class: 'btn btn-lg btn-primary btn-block' %>
       </div>
+      <p><%= link_to "Sign in", sign_in_path %></p>
     <% end %>
   </div>
 </div>
