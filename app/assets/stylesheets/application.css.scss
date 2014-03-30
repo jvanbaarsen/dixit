@@ -13,3 +13,21 @@
  *= require_tree .
  */
 @import "bootstrap";
+
+.user-button {
+  @extend .btn-group;
+  @extend .pull-right;
+  margin-top: -40px;
+}
+
+.story {
+  .status-bar {
+    @extend .row;
+    @extend .bg-info;
+    margin-top: 20px;
+    padding: 10px;
+    span {
+      line-height: 33px;
+    }
+  }
+}
