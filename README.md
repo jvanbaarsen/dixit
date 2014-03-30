@@ -14,3 +14,6 @@ Create a game called Dixit.
 ## Viewing received e-mails
 When you've started mailcatcher, you go to: `127.0.0.1:1080` to see the mail flowing in!
 
+
+[![Build Status](https://travis-ci.org/jvanbaarsen/dixit.svg?branch=master)](https://travis-ci.org/jvanbaarsen/dixit) [![Code Climate](https://codeclimate.com/github/jvanbaarsen/dixit.png)](https://codeclimate.com/github/jvanbaarsen/dixit)
+
