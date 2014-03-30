@@ -1,0 +1,9 @@
+language: ruby
+env:
+  global:
+    - DB=postgresql
+    - TRAVIS=true
+rvm:
+  - 2.1.1
+notifications:
+  email: true
