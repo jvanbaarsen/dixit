@@ -2,7 +2,6 @@ require 'spec_helper'
 
 feature 'Visitor updates password' do
   scenario 'with valid password' do
-    pending "Its pending"
     user = user_with_reset_password
     update_password user, 'newpassword'
 
@@ -10,7 +9,6 @@ feature 'Visitor updates password' do
   end
 
   scenario 'signs in with new password' do
-    pending "Its pending"
     user = user_with_reset_password
     update_password user, 'newpassword'
     sign_out
@@ -20,7 +18,6 @@ feature 'Visitor updates password' do
   end
 
   scenario 'tries with a blank password' do
-    pending "Its pending"
     user = user_with_reset_password
     visit_password_reset_page_for user
     change_password_to ''
