@@ -2,7 +2,6 @@ require 'spec_helper'
 
 feature 'Visitor resets password' do
   scenario 'by navigating to the page' do
-    pending "Its pending"
     visit sign_in_path
 
     click_link I18n.t('sessions.form.forgot_password')
@@ -11,7 +10,6 @@ feature 'Visitor resets password' do
   end
 
   scenario 'with valid email' do
-    pending "Its pending"
     user = user_with_reset_password
 
     page_should_display_change_password_message
@@ -19,7 +17,6 @@ feature 'Visitor resets password' do
   end
 
   scenario 'with non-user account' do
-    pending "Its pending"
     reset_password_for 'unknown.email@example.com'
 
     page_should_display_change_password_message
