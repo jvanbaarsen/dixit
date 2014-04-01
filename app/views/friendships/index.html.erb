@@ -15,12 +15,12 @@
     </div>
     <%= render_flash(:error) %>
     <%= render_flash(:success) %>
-    <div class="well">
       <% if @friends.count > 0  %>
-        <%= render partial: 'friendships/friend', collection: @friends, as: :friend %>
+        <table class="table table-hover">
+          <%= render partial: 'friendships/friend', collection: @friends, as: :friend %>
+        </table>
       <% else %>
         <p>You don't have any friends yet.</p>
       <% end %>
-    </div>
   </div>
 </div>

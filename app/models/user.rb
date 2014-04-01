@@ -24,8 +24,19 @@ class User < ActiveRecord::Base
       raise FriendAlreadyInListError
     end
   end
+
+  def remove_friend!(friend)
+    if self.friends.include?(friend)
+      self.friends.delete(friend)
+    else
+      raise UserNotOnFriendListError
+    end
+  end
 end
 
 class FriendAlreadyInListError < StandardError
+end
+
+class UserNotOnFriendListError < StandardError
 end
 

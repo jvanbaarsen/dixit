@@ -1,3 +1,5 @@
-<div>
-  <%= friend.name %>
-</div>
+<tr id="friend-<%= friend.id %>">
+  <td><%= friend.name %></td>
+  <td><%= link_to "Remove from list", friendship_path(friend.id), method: :delete, 
+    data: {confirm: "Are you sure?"}, class: 'pull-right ' %></td>
+</tr>

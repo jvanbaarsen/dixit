@@ -33,4 +33,27 @@ describe User do
       end
     end
   end
+
+  describe '#remove_friend!' do
+    context 'when friend is on friendlist' do
+      it 'Removes the given friend' do
+        user = create(:user)
+        friend = create_friend_for(user)
+        expect {
+          user.remove_friend!(friend)
+        }.to change(user.friends, :count).by(-1)
+      end
+    end
+
+    context 'when user is not on the list' do
+      it 'raises a UserNotOnFriendListError' do
+        user = create(:user)
+        another_user = create(:user)
+
+        expect {
+          user.remove_friend!(another_user)
+        }.to raise_error UserNotOnFriendListError
+      end
+    end
+  end
 end
