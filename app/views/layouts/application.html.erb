@@ -27,27 +27,11 @@
               Welcome Jeroen van Baarsen <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
-              <li><a href="#">Friends</a></li>
+              <li><%= link_to "Friends", friendships_path %></li>
               <li class="divider"></li>
               <li><%= link_to "Sign out", sign_out_path, method: :delete %></li>
             </ul>
           </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <h1>Your stories in progress</h1>
-          <%= render "games/story", finished: false %>
-          <%= render "games/story", finished: false %>
-          <%= render "games/story", finished: false %>
-          <%= render "games/story", finished: false %>
-        </div>
-        <div class="col-md-6">
-          <h1>Finished stories</h1>
-          <%= render "games/story", finished: true %>
-          <%= render "games/story", finished: true %>
-          <%= render "games/story", finished: true %>
-          <%= render "games/story", finished: true %>
         </div>
       </div>
       <%= yield %>

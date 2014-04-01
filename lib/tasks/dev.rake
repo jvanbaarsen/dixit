@@ -13,13 +13,11 @@ namespace :dev do
   def create_users
     header "Users"
     
-    user = FactoryGirl.create(:user, name: "John Doe", email: "john.doe@example.com")
-    puts_user user
-
-    user = FactoryGirl.create(:user, name: "Piet", email: "piet@example.com")
-    puts_user user
+    puts_user FactoryGirl.create(:user, name: "John Doe", email: "john.doe@example.com")
+    puts_user FactoryGirl.create(:user, name: "Piet", email: "piet@example.com")
 
     user = FactoryGirl.create(:user, name: "Jeroen van Baarsen", email: "jeroen@example.com")
+    user.add_friend!(User.first)
     puts_user user
   end
 
