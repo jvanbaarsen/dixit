@@ -13,4 +13,32 @@ HEADER
       expect(helper.page_header("Nice header")).to eq expected_value
     end
   end
+
+  describe '#flash_notice' do
+    context 'with param ":error"' do
+      it 'renders the flash notices' do
+        flash[:error] = 'Test error'
+        expected_value = <<FLASH
+<div class="alert alert-dismissable alert-danger">
+  <button type="button" class="close" data-dismiss="alert">×</button>
+  Test error
+</div>
+FLASH
+        expect(helper.render_flash(:error)).to eq expected_value
+      end
+    end
+
+    context 'with param ":error"' do
+      it 'renders the flash notices' do
+        flash[:success] = 'Success notice'
+        expected_value = <<FLASH
+<div class="alert alert-dismissable alert-success">
+  <button type="button" class="close" data-dismiss="alert">×</button>
+  Success notice
+</div>
+FLASH
+        expect(helper.render_flash(:success)).to eq expected_value
+      end
+    end
+  end
 end
