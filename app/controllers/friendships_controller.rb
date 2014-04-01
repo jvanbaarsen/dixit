@@ -16,6 +16,16 @@ class FriendshipsController < ApplicationController
     render_friend_add_error "We don't know that user, sorry!"
   end
 
+  def destroy
+    friend = current_user.friends.find(params[:id])
+    current_user.remove_friend!(friend)
+    flash[:success] = 'Friend was removed from the list'
+  rescue UserNotOnFriendListError
+    flash[:error] = 'User is not on your friendlist'
+  ensure
+    redirect_to friendships_path
+  end
+
   private
 
   def render_friend_add_error(msg)

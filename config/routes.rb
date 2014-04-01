@@ -7,7 +7,7 @@ Dixit::Application.routes.draw do
         only: [:create, :edit, :update]
     end
 
-  resources :friendships, path: 'friends', only: [:index, :create]
+  resources :friendships, path: 'friends', only: [:index, :create, :destroy]
 
   get '/session', to: redirect('/sign_in')
 
