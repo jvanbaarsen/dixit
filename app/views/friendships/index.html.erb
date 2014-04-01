@@ -1,6 +1,8 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <h3>Your friends</h3>
+    <h3>Your friends 
+        <small><%= link_to "#{fa_icon 'arrow-left'} Back to game dashboard".html_safe, root_path, class: 'pull-right' %></small>
+    </h3>
     <div class="well">
       <%= form_tag friendships_path, method: :post, html: {class: 'form-horizontal'} do |f|  %>
         <div class="input-group">
