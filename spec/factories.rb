@@ -7,9 +7,21 @@ FactoryGirl.define do
     "user#{n}"
   end
 
+  sequence :title do |n|
+    "title#{n}"
+  end
+
   factory :user do
     email
     name
     password 'password'
+  end
+
+  factory :game do
+    title
+    description "Example game"
+    factory :finished_game do
+      state "finished"
+    end
   end
 end

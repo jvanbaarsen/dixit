@@ -9,6 +9,24 @@ describe User do
 
   describe 'Associations' do
     it { should have_many(:friends).through(:friendships) }
+    it { should have_many(:games).through(:participations) }
+  end
+
+  describe '#total_games' do
+    it 'returns the number of running games a user has' do
+      user = build(:user)
+      user.stub(:games).and_return double(count: 1)
+      expect(user.total_games).to eq 1
+    end
+  end
+
+  describe '#running_games' do
+    it 'retrieves all the games that are not finished yet' do
+      user = build(:user)
+      game = build(:game)
+      user.stub(:games).and_return double(running: [game])
+      expect(user.running_games).to include(game)
+    end
   end
 
   describe '#add_friend!' do
