@@ -24,6 +24,10 @@ class User < ActiveRecord::Base
     self.games.count
   end
 
+  def running_games
+    self.games.running
+  end
+
   def add_friend!(friend)
     unless self.friends.include?(friend)
       self.friends << friend

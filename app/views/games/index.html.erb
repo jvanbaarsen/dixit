@@ -1,19 +1,16 @@
 <%= render_flash(:success)  %>
 <%= render_flash(:error)  %>
 <%= link_to "Start new game", new_game_path %>
-<div class="row">
-  <div class="col-md-6">
+<div class="games">
+  <div class="running-games">
     <h1>Your stories in progress</h1>
-    <%= render "games/story", finished: false %>
-    <%= render "games/story", finished: false %>
-    <%= render "games/story", finished: false %>
-    <%= render "games/story", finished: false %>
+    <%= render partial: "games/story", collection: @running_games, as: :game %>
   </div>
   <div class="col-md-6">
     <h1>Finished stories</h1>
-    <%= render "games/story", finished: true %>
-    <%= render "games/story", finished: true %>
-    <%= render "games/story", finished: true %>
-    <%= render "games/story", finished: true %>
+    <%# <%= render "games/story", finished: true %1> %>
+    <%# <%= render "games/story", finished: true %1> %>
+    <%# <%= render "games/story", finished: true %1> %>
+    <%# <%= render "games/story", finished: true %1> %>
   </div>
 </div>

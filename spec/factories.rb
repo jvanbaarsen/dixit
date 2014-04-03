@@ -20,5 +20,8 @@ FactoryGirl.define do
   factory :game do
     title
     description "Example game"
+    factory :finished_game do
+      state "finished"
+    end
   end
 end

@@ -2,6 +2,7 @@ class GamesController < ApplicationController
   before_filter :authorize
 
   def index
+    @running_games = current_user.running_games
   end
 
   def new

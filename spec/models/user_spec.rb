@@ -14,10 +14,18 @@ describe User do
 
   describe '#total_games' do
     it 'returns the number of running games a user has' do
-      user = create(:user)
-      game = create(:game)
-      user.games << game
+      user = build(:user)
+      user.stub(:games).and_return double(count: 1)
       expect(user.total_games).to eq 1
+    end
+  end
+
+  describe '#running_games' do
+    it 'retrieves all the games that are not finished yet' do
+      user = build(:user)
+      game = build(:game)
+      user.stub(:games).and_return double(running: [game])
+      expect(user.running_games).to include(game)
     end
   end
 

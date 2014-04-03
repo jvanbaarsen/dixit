@@ -1,6 +1,6 @@
 <div class="story panel panel-default">
   <div class="panel-heading">
-    <h4>Title of your amazing story!</h4>
+    <h4><%= game.title %></h4>
   </div>
   <div class="panel-body">
     <div class="row">
@@ -9,12 +9,10 @@
       <div class="col-xs-3"><%= image_tag "http://lorempixel.com/g/98/98/", class: 'thumbnail' %></div>
       <div class="col-xs-3"><%= image_tag "http://lorempixel.com/g/98/98/", class: 'thumbnail' %></div>
     </div>
-    <% unless finished %>
-      <div class="status-bar">
-        <span>Status: <b>Waiting for your picture</b> </span>
-        <%= link_to "Go there... <i class=\"fa fa-arrow-right\"></i>".html_safe, "#", class: 'btn btn-default pull-right' %>
-      </div>
-    <% end %>
+    <div class="status-bar">
+      <span>Status: <b>Waiting for your picture</b> </span>
+      <%= link_to "Go there... <i class=\"fa fa-arrow-right\"></i>".html_safe, "#", class: 'btn btn-default pull-right' %>
+    </div>
     <div class="row col-md-12">
       <hr/>
       <b>Blurp:</b>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 

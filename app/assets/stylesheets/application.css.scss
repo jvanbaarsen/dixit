@@ -21,6 +21,13 @@
   margin-top: -40px;
 }
 
+.games {
+  @extend .row;
+  .running-games {
+    @extend .col-md-6;
+  }
+}
+
 .story {
   .thumbnail {
     @extend .img-circle;

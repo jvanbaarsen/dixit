@@ -12,6 +12,9 @@ feature 'As an user I want to be able to start a new game' do
     click_button 'Start new game'
 
     expect(page).to have_content "Game was created, please wait for players to accept the invite"
+    within ".running-games" do
+      expect(page).to have_content "Example game"
+    end
     expect(current_path).to eq root_path
     expect(user.total_games).to eq 1
   end
