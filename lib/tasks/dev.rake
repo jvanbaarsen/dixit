@@ -12,10 +12,12 @@ namespace :dev do
 
   def create_users
     header "Users"
-    
-    puts_user FactoryGirl.create(:user, name: "John Doe", email: "john.doe@example.com")
-    puts_user FactoryGirl.create(:user, name: "Piet", email: "piet@example.com")
+   
+    20.times do
+      puts_user FactoryGirl.create(:user)
+    end
 
+    # Create one known user
     user = FactoryGirl.create(:user, name: "Jeroen van Baarsen", email: "jeroen@example.com")
     user.add_friend!(User.first)
     puts_user user
