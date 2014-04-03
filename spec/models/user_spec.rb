@@ -9,6 +9,16 @@ describe User do
 
   describe 'Associations' do
     it { should have_many(:friends).through(:friendships) }
+    it { should have_many(:games).through(:participations) }
+  end
+
+  describe '#total_games' do
+    it 'returns the number of running games a user has' do
+      user = create(:user)
+      game = create(:game)
+      user.games << game
+      expect(user.total_games).to eq 1
+    end
   end
 
   describe '#add_friend!' do

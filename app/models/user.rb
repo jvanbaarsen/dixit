@@ -17,6 +17,13 @@ class User < ActiveRecord::Base
   has_many :friendships
   has_many :friends, through: :friendships
 
+  has_many :participations
+  has_many :games, through: :participations
+
+  def total_games
+    self.games.count
+  end
+
   def add_friend!(friend)
     unless self.friends.include?(friend)
       self.friends << friend
