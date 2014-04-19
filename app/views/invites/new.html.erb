@@ -1,0 +1,55 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <h3>Invite your friends</h3>
+      <div class="row well">
+        <div class="js-invite-box-friend">
+          <h4>Your friends</h4>
+          <div class="row">
+            <div class="js-all-friends-invited <%= "hidden" unless @friends.empty? %>">
+              <p class="col-md-12">You have invited all of your friends</p>
+            </div>
+            <% @friends.each do |friend| %>
+              <div class="col-md-6 js-friend-<%= friend.id %>">
+                <div class="friend-to-invite">
+                  <div class="col-md-8"><%= friend.name %></div>
+                  <div class="col-md-4">
+                    <%= link_to "Invite", new_game_invite_path(@game, friend_id: friend), 
+                      method: :post, class: 'pull-right', id: "add-friend-#{friend.id}", remote: true %>
+                  </div>
+                </div>
+              </div>
+              <% end %>
+            </div>
+            <hr/>
+            <div class="row">
+              <%= form_tag new_game_invite_path(@game), 
+                method: :post, html: {class: 'form-horizontal'}, remote: true do |f| %>
+                <div class="input-group">
+                  <%= email_field_tag :email, '', class: 'form-control', placeholder: "Invite player by e-mail" %>
+                <span class="input-group-btn">
+                  <%= submit_tag "Sent invite", class: 'btn btn-primary' %>
+                </span>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="js-invite-status"></div>
+      <div class="js-current-invites <%= "hidden" if @invites.empty? %>">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th></th>
+            </tr>
+          </thead> 
+          <tbody>
+            <% @invites.each do |invite| %>
+              <%= render 'invite', participant: invite %>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

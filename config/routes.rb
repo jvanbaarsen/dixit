@@ -8,7 +8,12 @@ Dixit::Application.routes.draw do
     end
 
   resources :friendships, path: 'friends', only: [:index, :create, :destroy]
-  resources :games, only: [:new, :create]
+  resources :games, only: [:new, :create, :show] do
+    resource :invite, only: [:new, :destroy], path_names: {new: ''} do
+      post '/(:friend_id)' => 'invites#create', as: 'new'
+    end
+  end
+
 
   get '/session', to: redirect('/sign_in')
 

@@ -5,6 +5,13 @@ class GamesController < ApplicationController
     @running_games = current_user.running_games
   end
 
+  def show
+    @game = current_user.games.find(params[:id])
+    if @game.new?
+      redirect_to new_game_invite_path(@game)
+    end
+  end
+
   def new
     if user_can_create_game
       @game = Game.new
@@ -19,7 +26,7 @@ class GamesController < ApplicationController
     if @game.save
       current_user.games << @game
       flash[:success] = 'Game was created, please wait for players to accept the invite'
-      redirect_to root_path
+      redirect_to new_game_invite_path(@game)
     end
   end
 
