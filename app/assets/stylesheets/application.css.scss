@@ -44,3 +44,11 @@
     }
   }
 }
+
+.friend-to-invite {
+  @extend .row;
+  padding: 2px;
+  &:hover {
+    background: #f0f0f0;
+  }
+}

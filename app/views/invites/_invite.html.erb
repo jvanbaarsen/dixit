@@ -1,0 +1,7 @@
+<tr>
+  <td><%= participant.name %></td>
+  <td>
+    <%= link_to "x", game_invite_path(@game, user_id: participant.id), method: :delete, class: 'pull-right' if ENV['ALLOW_INVITE_DELETION'] %>
+    <span class="pull-right">Pending</span>
+  </td>
+</tr>

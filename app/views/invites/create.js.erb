@@ -1,0 +1,11 @@
+<% if @invite_status %>
+  $('.js-invite-status').html('<%= j render_flash(:success) %>');
+  $('.js-friend-<%= @friend.id %>').remove();
+  if($('.friend-to-invite').length == 0) {
+    $('.js-all-friends-invited').removeClass('hidden');
+  }
+  $('.js-current-invites').removeClass('hidden');
+  $('.js-current-invites table tbody').append('<%= j render('invite', participant: @friend)  %>');
+<% else %>
+  $('.js-invite-status').html('<%= j render_flash(:error) %>');
+<% end %>
