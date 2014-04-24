@@ -20,4 +20,9 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  game_status:
+    new: Waiting for you to invite players
+    invites_send: Waiting for players to accept their invite
+    waiting_for_storyteller: Waiting for storyteller
+    waiting_for_votes: Waiting for votes
+    finished: Game is finished

@@ -20,6 +20,12 @@ FactoryGirl.define do
   factory :game do
     title
     description "Example game"
+    factory :game_with_invites do
+      state "invites_send"
+      after(:create) do |game|
+        game.users << create(:user)
+      end
+    end
     factory :finished_game do
       state "finished"
     end

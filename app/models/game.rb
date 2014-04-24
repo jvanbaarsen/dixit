@@ -19,7 +19,7 @@ class Game < ActiveRecord::Base
       transition waiting_for_players: :waiting_for_votes
     end
 
-    event :finish do
+    event :finished do
       transition waiting_for_votes: :finished
     end
   end
@@ -28,6 +28,14 @@ class Game < ActiveRecord::Base
     unless users.include?(user)
       users << user
     end
+  end
+
+  def authors
+    self.users.collect(&:name)
+  end
+
+  def formatted_state
+    I18n.t "game_status.#{self.state}"
   end
 
   def self.running

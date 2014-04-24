@@ -21,6 +21,46 @@ describe Game do
     end
   end
 
+  describe '#authors' do
+    it 'returns an array with author names' do
+      game = create(:game_with_invites)
+      user = create(:user)
+      game.invite_player(user)
+
+      names = game.users.collect(&:name)
+
+      expect(game.authors).to eq names
+    end
+  end
+
+  describe '#formatted_state' do
+    it 'returns "Waiting for you to invite players" when status is new' do
+      game = build(:game)
+      expect(game.formatted_state).to eq "Waiting for you to invite players"
+    end
+
+    it 'returns "Waiting for players to accept their invite" when status is invites_send' do
+      game = build(:game, state: 'invites_send')
+      expect(game.formatted_state).to eq 'Waiting for players to accept their invite'
+    end
+
+    it 'returns "Waiting for storyteller" when status is waiting_for_storyteller' do
+      game = build(:game, state: 'waiting_for_storyteller')
+      expect(game.formatted_state).to eq 'Waiting for storyteller'
+    end
+
+    it 'returns "Waiting for votes" when status is waiting_for_votes' do
+      game = build(:game, state: 'waiting_for_votes')
+      expect(game.formatted_state).to eq 'Waiting for votes'
+    end
+
+    it 'returns "Game is finished" when status is finished' do
+      game = build(:game, state: 'finished')
+      expect(game.formatted_state).to eq 'Game is finished'
+    end
+
+  end
+
   describe ".running" do
     it 'returns not finished games' do
       game = create(:game)
