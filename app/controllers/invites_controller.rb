@@ -28,6 +28,9 @@ class InvitesController < ApplicationController
     # Only do damage in dev environment
     if ENV['ALLOW_INVITE_DELETION']
       @game.users.delete(params[:user_id])
+      if @game.participations.count == 1
+        @game.state = 'new'
+      end
     end
     redirect_to game_path(@game)
   end
