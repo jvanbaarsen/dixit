@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.0.4'
+gem 'rails', '4.0.5'
 gem 'pg'
 gem 'sass-rails', '~> 4.0.0'
 gem 'bootstrap-sass', '~> 3.1.1.0'
@@ -30,5 +30,5 @@ group :test do
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'capybara-webkit'
-  gem 'shoulda-matchers'
+  gem 'shoulda-matchers', require: false
 end
