@@ -5,6 +5,7 @@ class Game < ActiveRecord::Base
   state_machine initial: :new do
     event :invites_send do
       transition new: :invites_send
+      transition invites_send: :invites_send
     end
 
     event :waiting_for_storyteller do
