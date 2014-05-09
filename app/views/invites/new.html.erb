@@ -6,7 +6,7 @@
           <h4>Your friends</h4>
           <div class="row">
             <div class="js-all-friends-invited <%= "hidden" unless @friends.empty? %>">
-              <p class="col-md-12">You have invited all of your friends</p>
+              <p class="col-md-12">You have added all of your friends</p>
             </div>
             <% @friends.each do |friend| %>
               <div class="col-md-6 js-friend-<%= friend.id %>">
@@ -27,7 +27,7 @@
                 <div class="input-group">
                   <%= email_field_tag :email, '', class: 'form-control', placeholder: "Invite player by e-mail" %>
                 <span class="input-group-btn">
-                  <%= submit_tag "Sent invite", class: 'btn btn-primary' %>
+                  <%= submit_tag "Add user to the game", class: 'btn btn-primary' %>
                 </span>
               </div>
             <% end %>
@@ -49,6 +49,10 @@
             <% end %>
           </tbody>
         </table>
+      </div>
+      <div class="js-send-invites ">
+        <%= link_to "Send the invites", '#', class: 'btn btn-default pull-right' %>
+        <p>Start the game</p>
       </div>
     </div>
   </div>
