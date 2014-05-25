@@ -1,4 +1,8 @@
 Dixit::Application.routes.draw do
+  require 'sidekiq/web'
+
+  mount Sidekiq::Web => '/sidekiq'
+
   resources :users,
     controller: 'users',
     only: Clearance.configuration.user_actions do
@@ -10,6 +14,9 @@ Dixit::Application.routes.draw do
   resources :friendships, path: 'friends', only: [:index, :create, :destroy]
   resources :games, only: [:new, :create, :show] do
     resource :invite, only: [:new, :destroy], path_names: {new: ''} do
+      get '/accept' => 'invites#accept', as: 'accept'
+      get '/deny' => 'invites#deny', as: 'deny'
+      post '/send_invites' => 'invites#send_invites', as: 'send'
       post '/(:friend_id)' => 'invites#create', as: 'new'
     end
   end

@@ -27,7 +27,7 @@ class Game < ActiveRecord::Base
 
   def invite_player(user)
     unless users.include?(user)
-      users << user
+      Participation.create_invitation(self, user)
     end
   end
 
@@ -37,6 +37,14 @@ class Game < ActiveRecord::Base
 
   def formatted_state
     I18n.t "game_status.#{self.state}"
+  end
+
+  def send_invitations
+    if new?
+      user_ids = self.participations.where(state: 'pending').pluck(:user_id)
+      InvitationWorker.perform_async(self, user_ids)
+      self.invites_send!
+    end
   end
 
   def self.running

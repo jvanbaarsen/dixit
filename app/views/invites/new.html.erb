@@ -51,7 +51,7 @@
         </table>
       </div>
       <div class="js-send-invites ">
-        <%= link_to "Send the invites", '#', class: 'btn btn-default pull-right' %>
+        <%= link_to "Send the invites", send_game_invite_path(@game), method: :post, class: 'btn btn-default pull-right' %>
         <p>Start the game</p>
       </div>
     </div>
