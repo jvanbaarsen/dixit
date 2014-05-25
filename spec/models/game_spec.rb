@@ -11,6 +11,7 @@ describe Game do
       user = create(:user)
       game.invite_player(user)
       expect(game.participations.count).to eq 1
+      expect(game.participations.last.state).to eq "pending"
     end
 
     it 'returns false if user is already a participant' do
@@ -30,6 +31,25 @@ describe Game do
       names = game.users.collect(&:name)
 
       expect(game.authors).to eq names
+    end
+  end
+
+  describe '#send_invitations' do
+    context 'with the state `New`' do
+      it 'calls the InviteWorker' do
+        game = create(:game_with_invites)
+        expect(InvitationWorker).to receive(:perform_async)
+        game.send_invitations
+      end
+    end
+
+    context 'with another state then `New`' do
+      it 'wont call the InviteWorker' do
+        game = create(:game_with_invites)
+        game.invites_send!
+        expect(InvitationWorker).not_to receive(:perform_async)
+        game.send_invitations
+      end
     end
   end
 

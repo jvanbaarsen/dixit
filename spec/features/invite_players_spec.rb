@@ -33,7 +33,7 @@ feature 'Invite players for a game' do
     fill_in 'email', with: another_user.email
     click_button 'Add user to the game'
 
-    expect(page).to have_content 'Invite has been send!'
+    expect(page).to have_content 'Player has been added to the invite list!'
     within('.js-current-invites') do
       expect(page).to have_content another_user.name
     end
@@ -54,5 +54,19 @@ feature 'Invite players for a game' do
     within('.js-invite-box-friend') do
       expect(page).to have_content another_user.name
     end
+  end
+
+  scenario 'Send out all the invitations', js: true do
+    user = create(:user)
+    another_user = create_friend_for(user)
+    game = create_game_for(user)
+    game.invite_player(another_user)
+    visit game_path(game, as: user)
+
+    click_link "Send the invites"
+    expect(current_path).to eq root_path
+    expect(page).to have_content 'All the invites have been send, just wait for everyone to reply'
+    game.reload
+    expect(game.state).to eq 'invites_send'
   end
 end

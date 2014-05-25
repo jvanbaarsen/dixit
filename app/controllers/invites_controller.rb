@@ -12,7 +12,7 @@ class InvitesController < ApplicationController
     @friend = find_user
     if @game.invite_player(@friend)
       @invite_status = true
-      flash.now[:success] = 'Invite has been send!'
+      flash.now[:success] = 'Player has been added to the invite list!'
     else
       @invite_status = false
       flash.now[:error] = 'Player could not be invited. sorry!'
@@ -26,6 +26,35 @@ class InvitesController < ApplicationController
     @game = current_user.games.find(params[:game_id])
     @game.users.delete(params[:user_id])
     redirect_to game_path(@game)
+  end
+
+  def accept
+    invite = Participation.find_by(game_id: params[:game_id], user_id: current_user)
+    if invite.pending?
+      invite.accept_invite
+      flash[:success] = 'You have accepted your invite'
+    else
+      flash[:success] = 'You have already replied to this invite'
+    end
+    redirect_to root_path
+  end
+
+  def deny
+    invite = Participation.find_by(game_id: params[:game_id], user_id: current_user)
+    if invite.pending?
+      invite.deny_invite
+      flash[:success] = 'You have denied your invite'
+    else
+      flash[:success] = 'You have already replied to this invite'
+    end
+    redirect_to root_path
+  end
+
+  def send_invites
+    game = current_user.games.find(params[:game_id])
+    game.send_invitations
+    flash[:success] = 'All the invites have been send, just wait for everyone to reply'
+    redirect_to root_path
   end
 
   private

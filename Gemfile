@@ -13,6 +13,8 @@ gem 'unicorn'
 gem 'clearance', '~> 1.3.0'
 gem "font-awesome-rails"
 gem 'state_machine', '~> 1.2.0'
+gem 'sidekiq'
+gem 'sinatra', '>= 1.3.0', :require => nil
 
 group :development do
   gem 'spring'
@@ -23,6 +25,8 @@ end
 group :development, :test do
   gem 'foreman'
   gem 'rspec-rails'
+  gem 'rspec-nc'
+  gem 'fuubar'
 end
 
 group :test do
