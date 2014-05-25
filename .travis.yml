@@ -9,6 +9,6 @@ env:
 rvm:
   - 2.1.1
 before_script:
-  - "rake db:create"
+  - "bundle exec rake db:create"
 notifications:
   email: true
