@@ -1,9 +1,5 @@
 source 'https://rubygems.org'
 
-def darwin_only(require_as)
-  RUBY_PLATFORM.include?('darwin') && require_as
-end
-
 gem 'rails', '4.1.1'
 gem 'pg'
 gem 'sass-rails', '~> 4.0.0'
@@ -29,7 +25,6 @@ end
 group :development, :test do
   gem 'foreman'
   gem 'rspec-rails'
-  gem 'rspec-nc', require: darwin_only('rspec-nc')
   gem 'fuubar'
 end
 
