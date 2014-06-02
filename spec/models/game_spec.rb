@@ -3,6 +3,7 @@ require 'spec_helper'
 describe Game do
   describe 'Associations' do
     it { should have_many(:users).through(:participations) }
+    it { should have_many(:rounds) }
   end
 
   describe '#invite_player' do
@@ -78,7 +79,18 @@ describe Game do
       game = build(:game, state: 'finished')
       expect(game.formatted_state).to eq 'Game is finished'
     end
+  end
 
+  describe '#prepare_round' do
+    it 'creates a new round' do
+      game = create(:game, state: 'invites_send')
+      create_player_for(game)
+
+      expect(game.rounds.count).to eq 0
+      game.prepare_round
+      expect(game.rounds.count).to eq 1
+      expect(game.state).to eq 'waiting_for_storyteller'
+    end
   end
 
   describe ".running" do

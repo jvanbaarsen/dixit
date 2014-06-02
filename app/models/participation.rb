@@ -12,11 +12,11 @@ class Participation < ActiveRecord::Base
 
   def accept_invite
     self.accepted!
-    CheckInvitesWorker.perform_async(game)
+    CheckInvitesWorker.perform_async(game.id)
   end
 
   def deny_invite
     self.denied!
-    CheckInvitesWorker.perform_async(game)
+    CheckInvitesWorker.perform_async(game.id)
   end
 end

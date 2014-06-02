@@ -13,7 +13,7 @@ namespace :dev do
   def create_users
     header "Users"
    
-    20.times do
+    10.times do
       puts_user FactoryGirl.create(:user)
     end
 

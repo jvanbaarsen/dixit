@@ -24,7 +24,8 @@ class GamesController < ApplicationController
   def create
     @game = Game.new(game_params)
     if @game.save
-      current_user.games << @game
+      Participation.create!(game: @game, user: current_user, state: 'accepted')
+
       flash[:success] = 'Game was created, please wait for players to accept the invite'
       redirect_to new_game_invite_path(@game)
     end

@@ -1,6 +1,7 @@
 class Game < ActiveRecord::Base
   has_many :participations
   has_many :users, through: :participations
+  has_many :rounds
 
   state_machine initial: :new do
     event :invites_send do
@@ -42,9 +43,15 @@ class Game < ActiveRecord::Base
   def send_invitations
     if new?
       user_ids = self.participations.where(state: 'pending').pluck(:user_id)
-      InvitationWorker.perform_async(self, user_ids)
+      InvitationWorker.perform_async(self.id, user_ids)
       self.invites_send!
     end
+  end
+
+  def prepare_round
+    round = Round.create(game: self)
+    round.prepare(self.users)
+    self.waiting_for_storyteller!
   end
 
   def self.running
