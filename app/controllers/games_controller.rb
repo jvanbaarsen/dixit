@@ -2,12 +2,12 @@ class GamesController < ApplicationController
   before_filter :authorize
 
   def index
-    @running_games = current_user.running_games
+    @running_games = current_user.running_games.order("updated_at DESC")
   end
 
   def show
     @game = current_user.games.find(params[:id])
-    if @game.new?
+    if @game.inviting?
       redirect_to new_game_invite_path(@game)
     end
   end
