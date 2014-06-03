@@ -13,7 +13,7 @@ feature 'As an user I want to be able to start a new game' do
       click_button 'Start new game'
       game = user.games.last
       expect(user.total_games).to eq 1
-      expect(game.state).to eq "new"
+      expect(game.state).to eq "inviting"
       expect(current_path).to eq new_game_invite_path(game)
     end
   end
