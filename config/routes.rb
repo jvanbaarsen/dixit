@@ -19,6 +19,8 @@ Dixit::Application.routes.draw do
       post '/send_invites' => 'invites#send_invites', as: 'send'
       post '/(:friend_id)' => 'invites#create', as: 'new'
     end
+    resource :storyteller, only: [:new, :create],
+      path_names: {new: '', create: ''}
   end
 
 

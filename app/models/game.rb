@@ -33,6 +33,18 @@ class Game < ActiveRecord::Base
     self.waiting_for_storyteller!
   end
 
+  def current_storyteller
+    if self.rounds.any?
+      current_round.storyteller
+    else
+      User.new
+    end
+  end
+
+  def current_round
+    self.rounds.last
+  end
+
   def self.running
     where.not(state: states[:finished])
   end

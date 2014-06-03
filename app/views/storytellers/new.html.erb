@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <h3><%= @game.title %></h3>
+  </div>
+</div>
+
+<div class="row">
+  <div class="bhoechie-tab-container well">
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 bhoechie-tab-menu">
+      <div class="list-group">
+        <% @rounds.reverse.each do |round|  %>
+          <a href="#" class="list-group-item text-center">
+          <% if round == @rounds.last %>
+            Current round</br/>
+          <h4 class="round-number"><span class="fa fa-plus"></span></h4>
+        <% else %>
+            Round<br/>
+          <h4 class="round-number"><span><%= round.number %></span></h4>
+        <% end %>
+        </a>
+      <% end %>
+      </div>
+    </div>
+    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bhoechie-tab">
+      <div class="bhoechie-tab-content active">
+        <center>
+          <h1>You're the storyteller</h1>
+        </center>
+      </div>
+    </div>
+  </div>
+</div>
