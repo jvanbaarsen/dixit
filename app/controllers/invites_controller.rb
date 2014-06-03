@@ -29,25 +29,17 @@ class InvitesController < ApplicationController
   end
 
   def accept
-    invite = Participation.find_by(game_id: params[:game_id], user_id: current_user)
-    if invite.pending?
+    handle_invite do
       invite.accept_invite
       flash[:success] = 'You have accepted your invite'
-    else
-      flash[:success] = 'You have already replied to this invite'
     end
-    redirect_to root_path
   end
 
   def deny
-    invite = Participation.find_by(game_id: params[:game_id], user_id: current_user)
-    if invite.pending?
+    handle_invite do
       invite.deny_invite
       flash[:success] = 'You have denied your invite'
-    else
-      flash[:success] = 'You have already replied to this invite'
     end
-    redirect_to root_path
   end
 
   def send_invites
@@ -58,6 +50,19 @@ class InvitesController < ApplicationController
   end
 
   private
+
+  def handle_invite
+    if invite.pending?
+      yield
+    else
+      flash[:success] = 'You have already replied to this invite'
+    end
+    redirect_to root_path
+  end
+
+  def invite
+    @invite ||= Participation.find_by(game_id: params[:game_id], user_id: current_user)
+  end
 
   def find_user
     if params[:friend_id].present?
