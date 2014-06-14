@@ -28,6 +28,11 @@ describe GamesHelper do
       expect(helper.format_game_state(game, user)).to eq 'Game is finished'
     end
 
+    it 'returns "Waiting for other players to choose picture" when status is waiting for other players' do
+      game = create_game_with_state('waiting_for_players')
+      expect(helper.format_game_state(game, user)).to eq 'Waiting for other players to choose picture'
+    end
+
     it 'returns "You\'re the storyteller, everyone is waiting for you!" when you\'r the storyteller' do
       game = create_game_with_state('waiting_for_storyteller')
       expect(helper.format_game_state(game, @user)).to eq 'You\'re the storyteller, everyone is waiting for you!'

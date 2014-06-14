@@ -20,7 +20,9 @@ Dixit::Application.routes.draw do
       post '/send_invites' => 'invites#send_invites', as: 'send'
       post '/(:friend_id)' => 'invites#create', as: 'new'
     end
-    resources :rounds, only: [:show, :index]
+    resources :rounds, only: [:show, :index] do
+      post '/storypanel' => 'storypanels#create', as: 'storypanel'
+    end
   end
 
 

@@ -19,4 +19,8 @@ class Round < ActiveRecord::Base
   def number
     self.round_number
   end
+
+  def picture_for_user(user)
+    submitted_pictures.where(user: user).first
+  end
 end

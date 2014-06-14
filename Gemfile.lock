@@ -68,6 +68,7 @@ GEM
     factory_girl_rails (4.4.1)
       factory_girl (~> 4.4.0)
       railties (>= 3.0.0)
+    flickraw (0.9.8)
     font-awesome-rails (4.1.0.0)
       railties (>= 3.2, < 5.0)
     foreman (0.66.0)
@@ -210,6 +211,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   database_cleaner
   factory_girl_rails
+  flickraw
   font-awesome-rails (~> 4.1.0.0)
   foreman
   fuubar
@@ -219,6 +221,7 @@ DEPENDENCIES
   meta_request
   pg
   rails (= 4.1.1)
+  redis
   rspec-rails
   sass-rails (~> 4.0.0)
   shoulda-matchers

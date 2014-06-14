@@ -50,4 +50,17 @@ describe Round do
       expect(rounds.last.number).to eq 4
     end
   end
+
+  describe '#picture_for_user' do
+    it 'returns the image belonging to a user' do
+      game = create(:game)
+      users = []
+      users << create_player_for(game)
+      users << create_player_for(game)
+      round = Round.create(game: game)
+      round.prepare(users)
+      user_picture = SubmittedPicture.where(round: round.id).where(user_id: users.first.id)
+      expect(round.picture_for_user(users.first)).to eq user_picture.first
+    end
+  end
 end
