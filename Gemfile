@@ -12,7 +12,7 @@ gem 'jquery-turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'unicorn'
 gem 'clearance', '~> 1.3.0'
-gem "font-awesome-rails"
+gem "font-awesome-rails", '~> 4.1.0.0'
 gem 'sidekiq'
 gem 'sinatra', '>= 1.3.0', :require => nil
 

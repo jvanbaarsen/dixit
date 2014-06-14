@@ -49,6 +49,10 @@ class InvitesController < ApplicationController
     redirect_to root_path
   end
 
+  def pending
+    current_user.games.find(params[:game_id])
+  end
+
   private
 
   def handle_invite

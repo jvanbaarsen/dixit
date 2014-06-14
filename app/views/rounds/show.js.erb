@@ -1,0 +1,7 @@
+$('.bhoechie-tab-content').html('<%= j render @state %>');
+$('.bhoechie-tab-loading').fadeOut("fast", function() {
+  $(this).removeClass('active');
+  $('.bhoechie-tab-content').fadeIn("fast", function() {
+    $(this).addClass('active');
+  });
+});
