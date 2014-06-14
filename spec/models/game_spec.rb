@@ -93,6 +93,34 @@ describe Game do
     end
   end
 
+  describe '#current_storyteller' do
+    it 'returns the current storyteller' do
+      game = create(:game, state: 'waiting_for_storyteller')
+      user = create_player_for(game)
+      create_player_for(game)
+      game.prepare_round
+      set_storyteller(game, user)
+      expect(game.current_storyteller).to eq user
+    end
+
+    it 'returns an empty user if there is no current round or storyteller' do
+      game = create(:game)
+      expect(game.current_storyteller).to be_a User
+      expect(game.current_storyteller.persisted?).to be_false
+    end
+  end
+
+  describe '#current_round' do
+    it 'returns the current round' do
+      game = create(:game, state: 'waiting_for_storyteller')
+      create_player_for(game)
+      game.prepare_round
+      game.prepare_round
+      round = Round.last
+      expect(game.current_round).to eq round
+    end
+  end
+
   describe ".running" do
     it 'returns not finished games' do
       game = create(:game)

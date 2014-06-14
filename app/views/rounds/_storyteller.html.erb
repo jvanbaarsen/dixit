@@ -1,0 +1,22 @@
+<div class="row storyteller">
+  <div class="page-header">
+    <h3>Create your storypanel</h3>
+  </div>
+  <%= form_tag game_round_storypanel_path(@game, @round) do %>
+    <div class="row">
+      <% @flickr_images.each do |image| %>
+      <div class="img-container">
+        <label for="flickr_id_<%= image.id %>">
+          <%= image_tag image.url_q %>
+        </label><br/>
+        <%= radio_button_tag "flickr_id", image.id, true  %>
+      </div>
+      <% end %>
+    </div>
+    <div class="storyfragment">
+      <%= text_area_tag "storyfragment", '', class: 'form-control', rows: 5, placeholder: 'Storyfragment' %>
+      <br/>
+      <%= submit_tag "Create storypanel", class: 'btn btn-primary btn-block' %>
+    </div>
+  <% end %>
+</div>

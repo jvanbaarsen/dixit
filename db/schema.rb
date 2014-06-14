@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140603172030) do
+ActiveRecord::Schema.define(version: 20140614125347) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 20140603172030) do
     t.text     "story_fragment"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "round_number",   default: 1
   end
 
   add_index "rounds", ["game_id"], name: "index_rounds_on_game_id", using: :btree
@@ -58,7 +59,7 @@ ActiveRecord::Schema.define(version: 20140603172030) do
     t.integer  "no_votes"
     t.boolean  "start_picture", default: false
     t.boolean  "final_picture", default: false
-    t.string   "flick_id"
+    t.string   "flickr_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

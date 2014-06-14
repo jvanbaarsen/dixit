@@ -1,0 +1,19 @@
+.storyteller {
+  .img-container {
+    float: left;
+    width: 143px;
+    padding: 10px;
+    text-align: center;
+    img {
+      @extend .img-responsive;
+      @extend .img-thumbnail;
+    }
+  }
+  form {
+    .storyfragment {
+      @extend .row;
+      width: 100% ;
+      padding: 10px;
+    }
+  }
+}

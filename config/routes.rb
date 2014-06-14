@@ -16,8 +16,12 @@ Dixit::Application.routes.draw do
     resource :invite, only: [:new, :destroy], path_names: {new: ''} do
       get '/accept' => 'invites#accept', as: 'accept'
       get '/deny' => 'invites#deny', as: 'deny'
+      get '/pending' => 'invites#pending', as: 'pending'
       post '/send_invites' => 'invites#send_invites', as: 'send'
       post '/(:friend_id)' => 'invites#create', as: 'new'
+    end
+    resources :rounds, only: [:show, :index] do
+      post '/storypanel' => 'storypanels#create', as: 'storypanel'
     end
   end
 

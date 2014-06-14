@@ -21,4 +21,9 @@ module Games
     Participation.create!(game: game, user: user, state: 'accepted')
     user
   end
+
+  def set_storyteller(game, user)
+    SubmittedPicture.where(round: game.rounds.last).update_all(start_picture: false)
+    SubmittedPicture.where(round: game.rounds.last).where(user: user).update_all(start_picture: true)
+  end
 end

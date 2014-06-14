@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <h3><%= @game.title %></h3>
+  </div>
+</div>
+
+<div class="row">
+  <div class="bhoechie-tab-container">
+    <div class="bhoechie-tab-menu">
+      <div class="list-group">
+        <% @rounds.reverse.each do |round|  %>
+          <%= link_to game_round_path(@game, round), class: 'list-group-item text-center', data: {round: round.id}, remote: true do %>
+            <% if round == @rounds.last %>
+              Current round</br/>
+              <h4 class="round-number"><span class="fa fa-plus"></span></h4>
+            <% else %>
+              Round<br/>
+              <h4 class="round-number"><span><%= round.number %></span></h4>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class="bhoechie-tab">
+      <div class="bhoechie-tab-content">
+      </div>
+      <div class="bhoechie-tab-loading">
+        <p>Loading</p>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+      </div>
+    </div>
+  </div>
+</div>

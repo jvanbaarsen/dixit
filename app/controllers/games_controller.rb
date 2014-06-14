@@ -9,6 +9,10 @@ class GamesController < ApplicationController
     @game = current_user.games.find(params[:id])
     if @game.inviting?
       redirect_to new_game_invite_path(@game)
+    elsif @game.invites_send?
+      redirect_to pending_game_invite_path(@game)
+    else
+      redirect_to game_rounds_path(@game)
     end
   end
 
