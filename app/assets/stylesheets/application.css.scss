@@ -26,6 +26,7 @@
 .games {
   @extend .row;
   .running-games {
+    @extend .col-md-offset-3;
     @extend .col-md-6;
   }
 }

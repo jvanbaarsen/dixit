@@ -9,7 +9,7 @@ class Round < ActiveRecord::Base
       SubmittedPicture.create(user: player, round: self)
     end
     random_picture = SubmittedPicture.where(round: self).order('RANDOM()').first
-    random_picture.update(start_picture: true)
+    random_picture.update(start_picture: true, has_voted: true)
   end
 
   def storyteller
@@ -22,5 +22,13 @@ class Round < ActiveRecord::Base
 
   def picture_for_user(user)
     submitted_pictures.where(user: user).first
+  end
+
+  def player_voted?(user)
+    submitted_pictures.where(user: user).first.has_voted?
+  end
+
+  def finished?
+    submitted_pictures.where(final_picture: true).count == 1
   end
 end

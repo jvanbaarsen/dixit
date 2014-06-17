@@ -63,4 +63,26 @@ describe Round do
       expect(round.picture_for_user(users.first)).to eq user_picture.first
     end
   end
+
+  describe '#player_voted?' do
+    it 'returns true if the player has voted' do
+      game = create(:game)
+      user = create_player_for(game)
+      round = Round.create(game: game)
+      round.prepare([user])
+      SubmittedPicture.where(round: round.id).where(user_id: user.id).first.update(has_voted: true)
+      expect(round.player_voted?(user)).to be_true
+    end
+  end
+
+  describe '#finished?' do
+    it 'returns true if the game has finished' do
+      game = create(:game)
+      user = create_player_for(game)
+      round = Round.create(game: game)
+      round.prepare([user])
+      SubmittedPicture.where(round: round.id).where(user_id: user.id).first.update(final_picture: true)
+      expect(round.finished?).to be_true
+    end
+  end
 end

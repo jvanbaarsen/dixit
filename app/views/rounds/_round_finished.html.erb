@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="page-header">
+    <h3>Round is finished</h3>
+  </div>
+  <p><b>Storyfragment was:</b> <%= @round.story_fragment %></p>
+  <div class="col-md-6">
+    <p><b>The best picture was:</b><br/>
+    <%= image_tag FlickRaw.url_q(Flickr.find(@final_picture.flickr_id)) %>
+    </p>
+  </div>
+  <div class="col-md-6">
+    <p><b>The original picture was:</b><br/>
+    <%= image_tag FlickRaw.url_q(Flickr.find(@start_picture.flickr_id)) %>
+    </p>
+  </div>
+</div>

@@ -7,6 +7,11 @@ class CheckGameStateWorker
       if game.current_round.submitted_pictures.where(flickr_id: nil).count == 0
         game.waiting_for_votes!
       end
+    elsif game.waiting_for_votes?
+      if game.current_round.submitted_pictures.where(has_voted: false).count == 0
+        ScoreCalculatorWorker.perform_async(game_id)
+        game.prepare_round
+      end
     end
   end
 end
