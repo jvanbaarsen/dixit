@@ -1,6 +1,5 @@
 class StorypanelsController < ApplicationController
   def create
-# game_round_storypanel
     @game = current_user.games.find(params[:game_id])
     @round = @game.current_round
     if @game.current_storyteller == current_user

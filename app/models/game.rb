@@ -45,6 +45,14 @@ class Game < ActiveRecord::Base
     self.rounds.last
   end
 
+  def player_submitted_picture?(user)
+    if current_round.nil?
+      false
+    else
+      !current_round.picture_for_user(user).flickr_id.nil?
+    end
+  end
+
   def self.running
     where.not(state: states[:finished])
   end

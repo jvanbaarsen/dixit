@@ -13,6 +13,12 @@ class RoundsController < ApplicationController
       else
         storyteller
       end
+    elsif @game.waiting_for_players?
+      if @game.player_submitted_picture?(current_user)
+        waiting_for_players
+      else
+        waiting_for_your_picture
+      end
     end
   end
 
@@ -32,5 +38,15 @@ class RoundsController < ApplicationController
     $redis.set("round-word-#{@round.id}", word)
     @flickr_images = flickr.photos.search(tags: word, extras: 'url_q').to_a.sample(4)
     @submitted_picture = @round.picture_for_user(current_user)
+  end
+
+  def waiting_for_your_picture
+    @state = 'waiting_for_your_picture'
+    word = $redis.get("round-word-#{@round.id}") || RandomWord.word
+    @flickr_images = flickr.photos.search(tags: word, extras: 'url_q').to_a.sample(4)
+  end
+
+  def waiting_for_players
+    @state = 'waiting_for_players'
   end
 end

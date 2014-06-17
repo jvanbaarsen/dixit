@@ -22,6 +22,7 @@ Dixit::Application.routes.draw do
     end
     resources :rounds, only: [:show, :index] do
       post '/storypanel' => 'storypanels#create', as: 'storypanel'
+      post '/picture' => 'submitted_pictures#update', as: 'picture'
     end
   end
 

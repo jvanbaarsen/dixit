@@ -121,6 +121,23 @@ describe Game do
     end
   end
 
+  describe '#player_submitted_picture?' do
+    it 'returns true if the player has submitted a picture' do
+      game = create(:game, state: 'waiting_for_players')
+      user = create_player_for(game)
+      game.prepare_round
+      game.current_round.picture_for_user(user).update(flickr_id: 1)
+      expect(game.player_submitted_picture?(user)).to be_true
+    end
+
+    it 'returns false if player has not submitted picture yet' do
+      game = create(:game, state: 'waiting_for_players')
+      user = create_player_for(game)
+      game.prepare_round
+      expect(game.player_submitted_picture?(user)).to be_false
+    end
+  end
+
   describe ".running" do
     it 'returns not finished games' do
       game = create(:game)

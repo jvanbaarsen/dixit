@@ -1,8 +1,10 @@
-<div class="row storyteller">
+<div class="row select_picture">
   <div class="page-header">
-    <h3>Create your storypanel</h3>
+    <h3>Choose your picture</h3>
   </div>
-  <%= form_tag game_round_storypanel_path(@game, @round) do %>
+  <p><b>Storyfragment:</b> <%= @round.story_fragment %></p>
+
+  <%= form_tag game_round_picture_path(@game, @round) do %>
     <div class="row">
       <% @flickr_images.each_with_index do |image, index| %>
       <div class="img-container">
@@ -14,9 +16,7 @@
       <% end %>
     </div>
     <div class="storyfragment">
-      <%= text_area_tag "storyfragment", '', class: 'form-control', rows: 5, placeholder: 'Storyfragment' %>
-      <br/>
-      <%= submit_tag "Create storypanel", class: 'btn btn-primary btn-block' %>
+      <%= submit_tag "Select picture", class: 'btn btn-primary pull-right' %>  
     </div>
   <% end %>
 </div>
