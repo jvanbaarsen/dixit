@@ -5,6 +5,7 @@ Create a game called Dixit.
 
 ## Install instructions
 1. Make sure you have Redis installed: `brew install redis`
+1. Make sure you have Postgresql installed, you can download `postgress.app` for that (http://postgresapp.com/)
 1. Just run `bin/setup`
 1. Add your information to `.env`
 1. Run `gem install mailcatcher`
