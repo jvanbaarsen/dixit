@@ -4,8 +4,9 @@
 Create a game called Dixit.
 
 ## Install instructions
+1. Make sure you have Redis installed: `brew install redis`
 1. Just run `bin/setup`
-2. Run `gem install mailcatcher`
+1. Run `gem install mailcatcher`
 
 ## Start instructions
 1. Run `mailcatcher`
