@@ -4,8 +4,8 @@ $(document).ready(function() {
         $(this).siblings('a.active').removeClass("active");
         $(this).addClass("active");
         var index = $(this).index();
-        $(".bhoechie-tab-content").removeClass("active");
-        $(".bhoechie-tab-loading").addClass("active");
+        $(".bhoechie-tab-content").hide().removeClass("active");
+        $(".bhoechie-tab-loading").addClass('active').show();
         // $("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
     });
     $('div.bhoechie-tab-menu>div.list-group>a:first').click();
