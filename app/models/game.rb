@@ -54,6 +54,6 @@ class Game < ActiveRecord::Base
   end
 
   def self.running
-    where.not(state: states[:finished])
+    where.not(state: [states[:finished], states[:inviting]])
   end
 end

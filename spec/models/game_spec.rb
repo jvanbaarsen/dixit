@@ -140,11 +140,13 @@ describe Game do
 
   describe ".running" do
     it 'returns not finished games' do
-      game = create(:game)
+      new_game = create(:game)
       finished_game = create(:finished_game)
+      invites_send = create(:game, state: :invites_send)
       games = Game.running
-      expect(games).to include(game)
+      expect(games).to include(invites_send)
       expect(games).not_to include(finished_game)
+      expect(games).not_to include(new_game)
     end
   end
 end

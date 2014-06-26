@@ -4,6 +4,7 @@ feature 'Player dashboard' do
   scenario 'Player sees his the running games' do
     user = create(:user)
     game = create_game_for(user)
+    game.invites_send!
     visit root_path(as: user)
 
     within '.running-games' do
@@ -14,6 +15,7 @@ feature 'Player dashboard' do
   scenario 'Game card should show usefull info' do
     user = create(:user)
     game = create_game_for(user, :invite)
+    game.invites_send!
     visit root_path(as: user)
 
     within ".story-#{game.id}" do
