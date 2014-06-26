@@ -31,7 +31,7 @@ describe Participation do
       participation = game.participations.last
       expect(CheckInvitesWorker).to receive(:perform_async)
       participation.deny_invite
-      expect(participation.denied?).to be_true
+      expect(game.participations).not_to include(participation)
     end
   end
 end

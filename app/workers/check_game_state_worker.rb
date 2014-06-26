@@ -9,7 +9,7 @@ class CheckGameStateWorker
       end
     elsif game.waiting_for_votes?
       if game.current_round.submitted_pictures.where(has_voted: false).count == 0
-        ScoreCalculatorWorker.perform_async(game_id)
+        ScoreCalculatorWorker.perform_async(game.round_id)
         game.prepare_round
       end
     end

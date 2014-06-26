@@ -16,7 +16,7 @@ class Participation < ActiveRecord::Base
   end
 
   def deny_invite
-    self.denied!
+    self.destroy!
     CheckInvitesWorker.perform_async(game.id)
   end
 end

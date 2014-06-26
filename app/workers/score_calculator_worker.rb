@@ -1,9 +1,9 @@
 class ScoreCalculatorWorker
   include Sidekiq::Worker
 
-  def perform(game_id)
-    game = Game.find(game_id)
-    round = game.current_round
+  def perform(round_id)
+    round = Round.find(round_id)
+    game = round.game
 
     best_picture = round.submitted_pictures.order(:no_votes).first
     best_picture.update(final_picture: true)

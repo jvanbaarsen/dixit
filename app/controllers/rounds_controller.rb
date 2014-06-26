@@ -36,7 +36,10 @@ class RoundsController < ApplicationController
       image = @round.submitted_pictures.find(params[:photo_id])
       image.increment!(:no_votes)
       @round.picture_for_user(current_user).update(has_voted: true)
-      CheckGameStateWorker.perform_async(@game.id)
+      if @game.current_round.submitted_pictures.where(has_voted: false).count == 0
+        ScoreCalculatorWorker.perform_async(@round.id)
+        @game.prepare_round
+      end
     end
     flash[:success] = 'Thanks for your vote!'
     redirect_to root_path(@game)
