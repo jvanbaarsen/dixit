@@ -4,11 +4,14 @@ feature 'Player dashboard' do
   scenario 'Player sees his the running games' do
     user = create(:user)
     game = create_game_for(user)
+    game2 = create_game_for(user)
     game.invites_send!
+    game2.invites_send!
     visit root_path(as: user)
 
     within '.running-games' do
       expect(page).to have_selector ".story-#{game.id}"
+      expect(page).to have_selector ".story-#{game2.id}"
     end
   end
 
